@@ -21,7 +21,7 @@ code {
 } 
 .imgHover:hover{
   transition-duration: 300ms;
-  transform: scale(1.1);
+  transform: scale(1.05);
   opacity: 0.9;
   box-shadow: 10px 10px 30px rgba(0,0,0,1);
 }  

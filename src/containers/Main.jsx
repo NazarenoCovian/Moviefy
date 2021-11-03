@@ -6,7 +6,7 @@ import axios from 'axios'
 import { Card } from '../components/Card'
 
 const Main = () => {
-    const {userUpdate, user}=useContext(userContext)
+    const {user}=useContext(userContext)
     const [movies,setMovies]=useState([])
     const [search,setSearch]=useState("")
     const history = useHistory()
@@ -35,15 +35,13 @@ const Main = () => {
     if (user.email===null) history.push("/login")
     return (
         <div className="bg-gray-800 h-screen">
-            {/* {console.log(movies)} */}
             <Header/>
             <div className="flex justify-center">
                 <input className="border-black-100 rounded mx-10 text-sm w-1/3 px-1" placeholder={"Buscar pelicula..."} onSubmit={handleClick} onChange={(e)=>setSearch(e.target.value)} value={search}/>
                 <button className="text-white" onClick={handleClick}>Buscar</button>
             </div>
             <Card movies={movies}/>
-
-
+            
         </div>
     )
 }

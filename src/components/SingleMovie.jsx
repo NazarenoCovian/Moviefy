@@ -1,32 +1,12 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
 import Header from './Header'
 import { RatingStar } from './RatingStar'
 import movieSelectedContext from "../contexts/movieSelectedContext"
-import axios from 'axios'
-import userContext from "../contexts/userContext"
+import BtnFavorites from './BtnFavorites'
 
 export const SingleMovie = () => {
     const {selectedMovie}=useContext(movieSelectedContext)
     const movie= selectedMovie
-    const {user}=useContext(userContext)
-
-    const handleClick=()=>{
-        axios.post("http://localhost:3001/api/favorites", 
-        {
-            movieId:movie.id,
-            userId:user.userId,
-            title:movie.title,
-            year:movie.release_date,
-            poster_path:movie.poster_path,
-            vote_average:movie.vote_average,
-            overview:movie.overview,
-            adult:movie.adult,
-
-            })
-            .then(data=>data)
-    }
-
 
     if(movie!=={})
     return (
@@ -47,7 +27,7 @@ export const SingleMovie = () => {
                                 <p class="text-base leading-relaxed text-gray-500 font-normal">{movie.overview}</p>
                                 <div class="flex justify-start space-x-2">
                                 </div>
-                                <button onClick={handleClick} className="text-white p-1"><span className="border text-white p-1">+</span><span className="border text-white p-1">Favoritos</span></button>
+                                <BtnFavorites movieId={movie.movieId==undefined?movie.id:movie.movieId} movie={movie}/>
                             </div>
                         </div>
                 </section>

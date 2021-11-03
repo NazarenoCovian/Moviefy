@@ -14,34 +14,27 @@ export const Card = ({movies}) => {
     return (
         <div className="w-full bg-gray-800">
             <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-8">
-                {/* <div className="text-center pb-4">
-                    <h1 className="font-bold text-xl md:text-2xl lg:text-3xl font-heading text-white">
-                        Resultados encontrados ...           
-                    </h1>
-                </div> */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6">
                     {/* ////////////////////// */}
                     {
-                    movies?movies.map((movie,i)=>{
+                    movies&&movies.map((movie,i)=>{
                         return(
-                            <div key={i} className="w-full bg-gray-900 rounded-lg shadow-lg py-12 flex flex-col justify-center items-center hover:bg-green-900 imgHover">
-                                <div className="mb-8">
+                            <div key={i} className="w-full bg-gray-900 rounded-lg shadow-lg flex flex-col justify-center items-center hover:bg-green-900 imgHover">
+                                <div className="mb-2 w-full">
                                     <img className="object-center object-cover rounded w-full" src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2${movie.poster_path}`} alt={movie.title}></img>
                                 </div>
                                 <div className="text-center">
-                                    <p className="text-xl text-white font-bold mb-2">{movie.title}</p>
-                                    <p className="text-base text-gray-400 font-normal">{movie.vote_average}</p>
+                                    <p className="text-xs text-white font-bold">{movie.title}</p>
                                     <RatingStar rate={movie.vote_average}/>
                                 </div>
-                                <div>
-                                <button onClick={()=>handleSeeMore(movie)} className={`py-1 px-4 rounded text-white hover:bg-green-300 bg-green-500`}><Link  to={`/movie/info`}>See more...</Link>
-                                </button> 
-                                
+                                <div className="mb-1">
                                 <BtnFavorites movieId={movie.movieId==undefined?movie.id:movie.movieId} movie={movie}/>
+                                <button onClick={()=>handleSeeMore(movie)} ><Link  to={`/movie/info`}><span className="text-xs px-1 rounded text-white hover:bg-green-300 bg-green-500">See more...</span></Link>
+                                </button> 
                                 </div>
                             </div>
                         )
-                    }):"Vacio"
+                    })
                     }
                     
                     {/* ////////////////////// */}
