@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from 'react-router-dom';
 import App  from "./containers/App";
 import "./index.css";
 import "./styles.css"
@@ -8,9 +7,7 @@ import "./styles.css"
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
     <App />    
-  </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

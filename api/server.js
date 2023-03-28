@@ -18,13 +18,16 @@ app.use(express.static("public"));
 
 
 
+app.use('/carlitos', (req,res)=>{
+  res.json({name:'naza'})
+});
 app.use('/api', routes);
 app.use("/api", (req, res) => {
   res.sendStatus(404);
 });
 
 app.use((req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(__dirname + "/index.html");
 });
 
 app.use((err, req, res, next) => {

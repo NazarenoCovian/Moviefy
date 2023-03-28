@@ -1,14 +1,15 @@
-import React, {  useContext, useState } from "react"
+import {  useState } from "react"
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import userContext from "../contexts/userContext"
+import { Button } from "./button/Button"
 import ProfileMenu from "./ProfileMenu"
+
 
 export default function Header() {
     const [open,setOpen] = useState(false)
-    const {user} =useContext(userContext)
+    const user = useSelector(state=>state.users)
     const color_principal = "green-500"
     const color_principal_hover ="green-400"
-
     return (
         <div>
             <nav className="bg-gray-800">
@@ -45,8 +46,8 @@ export default function Header() {
                             //  <span className={`font-sans text-${color_principal} rounded`}><Link to="/login">Cerrar sesión</Link></span>     
                              <ProfileMenu/>
                              :
-                             <button className={` p-1 rounded text-white hover:bg-${color_principal_hover} bg-${color_principal}`}><Link to="/login">Iniciar sesión</Link>
-                            </button>  
+                             <Link to="/login"> <Button title='Iniciar sesión'> </Button></Link>
+
                                           
                             }
                             
@@ -57,8 +58,6 @@ export default function Header() {
                     <div className="px-2 pt-2 pb-3 space-y-1">
                         <a href="/" className="bg-blue text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
                         <a href="/favorites" className="text-white hover:bg-turquoise hover:text-white block px-3 py-2 rounded-md text-base font-medium">Favorites</a>
-                        
-                        
                     </div>
                 </div>
             </nav>

@@ -12,6 +12,7 @@ const favorites = require("./favorites")
 router.post("/register", async (req, res) => {
 
   try {
+    console.log('entro')
     const { full_name, email, password } = req.body;
 
     if (!(email && password && full_name)) {
@@ -54,6 +55,7 @@ router.post("/register", async (req, res) => {
 
   
 router.post("/login", async (req, res) => {
+  console.log('entre aca puto')
 
  
   try {
@@ -83,6 +85,11 @@ router.post("/login", async (req, res) => {
     console.log(err);
   }
 });
+
+router.get('/users', async (req,res)=>{
+  const allUsers = await User.findAll()
+  res.status(200).send(allUsers)
+})
 
 router.use("/favorites",favorites)
 

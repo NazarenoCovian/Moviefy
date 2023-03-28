@@ -1,34 +1,32 @@
-import React from 'react'
-import { Switch } from 'react-router-dom'
-import { Redirect, Route } from 'react-router-dom'
-import {Login}  from '../components/Login'
+import React from "react"
+import { BrowserRouter, Navigate, Routes } from "react-router-dom"
+import { Route } from "react-router-dom"
+import { Login } from "../components/Login"
 import Main from "./Main"
 import Register from "../components/Register"
-import { UserProvider } from '../contexts/userContext'
-import { SingleMovie } from '../components/SingleMovie'
-import { MovieSelectedProvider } from '../contexts/movieSelectedContext'
-import { Favorites } from './Favorites'
-import { FavoritesMoviesProvider } from '../contexts/favoritesMoviesContext'
+import { SingleMovie } from "../components/SingleMovie"
+import { Favorites } from "./Favorites"
+import Header from "../components/Header"
+import store from "../store/store"
+import { Provider } from "react-redux"
 
 const App = () => {
-    return (
-        <div className="App"> 
-        <UserProvider>
-            <MovieSelectedProvider>
-                <FavoritesMoviesProvider>
-                    <Switch>
-                    <Route exact path="/login" component={Login} />
-                    <Route exact path="/register" component={Register} />
-                    <Route exact path="/main" component={Main}/>
-                    <Route exact path="/favorites" component={Favorites}/>
-                    <Route exact path="/movie/info" component={SingleMovie}/>
-                    <Redirect to="/login"/>
-                    </Switch>
-                </FavoritesMoviesProvider>
-            </MovieSelectedProvider>
-        </UserProvider>
-        </div>
-    )
+  return (
+    <Provider store={store}>
+      <div className="App">
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/main" element={<Main />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/movie/info" element={<SingleMovie />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </Provider>
+  )
 }
 
 export default App
